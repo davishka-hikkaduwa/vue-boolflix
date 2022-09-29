@@ -6,7 +6,6 @@
 </template>
 
 <script>
-    import axios from 'axios';
     export default {
         name: 'MainComponent',
         components:{
@@ -17,7 +16,6 @@
                 dataURL: '',
             }
         },
-        axios
     }
 </script>
 
