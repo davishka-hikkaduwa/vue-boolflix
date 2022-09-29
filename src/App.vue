@@ -3,14 +3,23 @@
     <HeaderComponent/>
     <MainComponent/>
 
-
-    <input type="text" v-model="query"/> <button @click="search">Cerca</button>
     <div class="container">
-      <div class="card" v-for="movie in movies" :key="movie.id">
-      <p>Title: {{ movie.title }}</p>
-      <p>Original Title: {{ movie.original_title }}</p>
-      <p>Average Vote: {{ movie.vote_average }}</p>
-      <p>Original Language: {{ movie.original_language }}</p>
+      <input type="text" v-model="query"/>
+      <button @click="search">
+        Cerca
+      </button>
+    </div>
+    <div class="container">
+      <div class="card my-2" v-for="movie in movies" :key="movie.id">
+        <p>Title: {{ movie.title }}</p>
+        <p>Original Title: {{ movie.original_title }}</p>
+        <p>Average Vote: {{ movie.vote_average }}</p>
+        <p>
+          <img class="flag" 
+            :src="getFlag(movie.original_language)" 
+            :alt="movie.original_language"
+            @error="fixImageError($event)">
+        </p>
       </div>
     </div>
   </div>
@@ -30,9 +39,9 @@ export default {
       movies: [],
     }
   },
-  mounted(){
-    this.queryApi()
-  },
+  // mounted(){
+  //   this.queryApi()
+  // },
   methods: {
     search(){
       this.queryApi(this.query)
@@ -48,7 +57,23 @@ export default {
       .catch(error=> {
         console.log(error.message);
       })
-    }
+    },
+    getFlag(country){
+      switch (country) {
+        case 'en': {
+          country = 'gb';
+          break;
+        }
+        case 'ja': {
+          country = 'jp'
+          break;
+        }
+      }
+      return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`
+    },
+    fixImageError(event){
+      event.target.src = `https://flagicons.lipis.dev/flags/1x1/xx.svg`
+    }  
   },
   components: {
     HeaderComponent,
@@ -60,15 +85,17 @@ export default {
 
 <style lang="scss">
   @import '@/assets/styles/style.scss';
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
   .card{
     border: 1px solid black;
-    margin: 5px;
     padding: 5px;
   }
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  .flag{
+    max-width: 20px;
+  }
+  
 </style>
