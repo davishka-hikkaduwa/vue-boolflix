@@ -1,27 +1,25 @@
 <template>
   <div id="app">
     <HeaderComponent/>
-    <MainComponent/>
 
-    <div class="container">
+    <!----- SEARCHBOX ----->
+    <div class="container">  
       <input type="text" v-model="query"/>
       <button @click="search">
         Cerca
       </button>
     </div>
+    
+    <!----- Container ----->
     <div class="container">
-      <div class="card my-2" v-for="movie in movies" :key="movie.id">
-        <p>Title: {{ movie.title }}</p>
-        <p>Original Title: {{ movie.original_title }}</p>
-        <p>Average Vote: {{ movie.vote_average }}</p>
-        <p>
-          <img class="flag" 
-            :src="getFlag(movie.original_language)" 
-            :alt="movie.original_language"
-            @error="fixImageError($event)">
-        </p>
-      </div>
+      <!-- MOVIES -->
+      <h3>Movies</h3>
+      <MovieCardComponent v-for="movie in movies" :key="movie.id"/>
+      <!-- Tv-Series -->
+      <h3>Tv-Series</h3> 
+      <ShowsCardComponent v-for="show in shows" :key="show.id"/>
     </div>
+   
   </div>
 </template>
 
@@ -29,7 +27,8 @@
   import axios from 'axios';
   import { apiKey } from '@/env';
   import HeaderComponent from './components/HeaderComponent.vue';
-  import MainComponent from './components/MainComponent.vue';
+  import MovieCardComponent from './components/MovieCardComponent.vue';
+  import ShowsCardComponent from './components/ShowsCardComponent.vue';
 
 export default {
   name: 'App',
@@ -37,6 +36,8 @@ export default {
     return{
       query: '',
       movies: [],
+      shows: [],
+      apiUrl: 'https://api.themoviedb.org/3/'
     }
   },
   // mounted(){
@@ -47,17 +48,29 @@ export default {
       this.queryApi(this.query)
     },
     queryApi(textToSearch){
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${textToSearch}&language=it-IT`)
+      const params = `?api_key=${apiKey}&query=${textToSearch}&language=it-IT`
+
+      axios.get(`${this.apiUrl}search/movie${params}`)
       .then((response)=>{
-        console.log(response);
-        if (response.status === 200) {
-          this.movies = response.data.results;
-        }
+       this.movies = this.getDataFromApiResponse(response);
       })
       .catch(error=> {
         console.log(error.message);
+      });
+      axios.get(`${this.apiUrl}search/tv${params}`)
+      .then((response)=>{
+        this.shows = this.getDataFromApiResponse(response);
       })
+      .catch(error=> {
+        console.log(error.message);
+      });
     },
+    getDataFromApiResponse(response){
+      console.log(response);
+      return response.status === 200? response.data.results: []
+
+    },
+ 
     getFlag(country){
       switch (country) {
         case 'en': {
@@ -77,8 +90,9 @@ export default {
   },
   components: {
     HeaderComponent,
-    MainComponent  
-  },
+    MovieCardComponent,
+    ShowsCardComponent
+},
   axios,
 }
 </script>
