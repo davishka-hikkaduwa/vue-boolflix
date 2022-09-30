@@ -3,23 +3,22 @@
         <p>Name: {{ show.name }}</p>
         <p>Original Name: {{ show.original_name }}</p>
         <p>Average Vote: {{ show.vote_average }}</p>
-        <p>
-            <img class="flag" 
-            :src="getFlag(show.original_language)" 
-            :alt="show.original_language"
-            @error="fixImageError($event)">
+        <p>Language:
+            <FlagComponent :language="show.original_language"/>
         </p>
     </div>
 </template>
 
 <script>
+    import FlagComponent from '@/components/FlagComponent.vue';
+
     export default {
-        name: 'ShowsCardComponent',
+        name: 'ShowCardComponent',
         props: {
             tv: Object,
         },
         components: {
-
+            FlagComponent,
         },
     }
 </script>

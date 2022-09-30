@@ -3,27 +3,23 @@
         <p>Title: {{ movie.title }}</p>
         <p>Original Title: {{ movie.original_title }}</p>
         <p>Average Vote: {{ movie.vote_average }}</p>
-        <p>
-          <!-- country-flags -->
-          <img class="flag" 
-            :src="getFlag(movie.original_language)" 
-            :alt="movie.original_language"
-            @error="fixImageError($event)">
-          <!-- /country-flags -->
+        <p>Language:
+            <FlagComponent :language="movie.original_language"/>
         </p>
     </div>    
 
 </template>
 
 <script>
+import FlagComponent from '@/components/FlagComponent.vue';
 export default {
     name: 'MovieCardComponent',
     props: {
         movie: Object,
     },
     components: {
-
-    },
+    FlagComponent
+},
 }
 </script>
 

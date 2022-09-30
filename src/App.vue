@@ -3,7 +3,7 @@
     <HeaderComponent/>
 
     <!----- SEARCHBOX ----->
-    <div class="container">  
+    <div>  
       <input type="text" v-model="query"/>
       <button @click="search">
         Cerca
@@ -14,10 +14,10 @@
     <div class="container">
       <!-- MOVIES -->
       <h3>Movies</h3>
-      <MovieCardComponent v-for="movie in movies" :key="movie.id"/>
+      <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/>
       <!-- Tv-Series -->
-      <h3>Tv-Series</h3> 
-      <ShowsCardComponent v-for="show in shows" :key="show.id"/>
+      <h3>Tv-Series</h3>
+      <ShowCardComponent v-for="show in shows" :key="show.id" :tv="show"/> 
     </div>
    
   </div>
@@ -26,9 +26,9 @@
 <script>
   import axios from 'axios';
   import { apiKey } from '@/env';
-  import HeaderComponent from './components/HeaderComponent.vue';
-  import MovieCardComponent from './components/MovieCardComponent.vue';
-  import ShowsCardComponent from './components/ShowsCardComponent.vue';
+  import HeaderComponent from '@/components/HeaderComponent.vue';
+  import MovieCardComponent from '@/components/MovieCardComponent.vue';
+  import ShowCardComponent from '@/components/ShowCardComponent.vue';
 
 export default {
   name: 'App',
@@ -40,9 +40,6 @@ export default {
       apiUrl: 'https://api.themoviedb.org/3/'
     }
   },
-  // mounted(){
-  //   this.queryApi()
-  // },
   methods: {
     search(){
       this.queryApi(this.query)
@@ -91,7 +88,7 @@ export default {
   components: {
     HeaderComponent,
     MovieCardComponent,
-    ShowsCardComponent
+    ShowCardComponent
 },
   axios,
 }
