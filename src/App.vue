@@ -17,7 +17,7 @@
       <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/>
       <!-- Tv-Series -->
       <h3>Tv-Series</h3>
-      <ShowCardComponent v-for="show in shows" :key="show.id" :tv="show"/> 
+      <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/> 
     </div>
    
   </div>
@@ -28,7 +28,7 @@
   import { apiKey } from '@/env';
   import HeaderComponent from '@/components/HeaderComponent.vue';
   import MovieCardComponent from '@/components/MovieCardComponent.vue';
-  import ShowCardComponent from '@/components/ShowCardComponent.vue';
+  import TvShowCardComponent from '@/components/TvShowCardComponent.vue';
 
 export default {
   name: 'App',
@@ -36,7 +36,7 @@ export default {
     return{
       query: '',
       movies: [],
-      shows: [],
+      tvShows: [],
       apiUrl: 'https://api.themoviedb.org/3/'
     }
   },
@@ -56,7 +56,7 @@ export default {
       });
       axios.get(`${this.apiUrl}search/tv${params}`)
       .then((response)=>{
-        this.shows = this.getDataFromApiResponse(response);
+        this.tvShows = this.getDataFromApiResponse(response);
       })
       .catch(error=> {
         console.log(error.message);
@@ -88,7 +88,7 @@ export default {
   components: {
     HeaderComponent,
     MovieCardComponent,
-    ShowCardComponent
+    TvShowCardComponent
 },
   axios,
 }
@@ -101,12 +101,7 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .card{
-    border: 1px solid black;
-    padding: 5px;
-  }
-  .flag{
-    max-width: 20px;
-  }
+  
+
   
 </style>

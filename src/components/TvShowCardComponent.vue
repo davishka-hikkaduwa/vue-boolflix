@@ -1,10 +1,10 @@
 <template>
     <div class="card my-2" >
-        <p>Name: {{ show.name }}</p>
-        <p>Original Name: {{ show.original_name }}</p>
-        <p>Average Vote: {{ show.vote_average }}</p>
+        <p>Name: {{ tv.name }}</p>
+        <p>Original Name: {{ tv.original_name }}</p>
+        <p>Average Vote: {{ tv.vote_average }}</p>
         <p>Language:
-            <FlagComponent :language="show.original_language"/>
+            <FlagComponent :language="tv.original_language"/>
         </p>
     </div>
 </template>
@@ -13,7 +13,7 @@
     import FlagComponent from '@/components/FlagComponent.vue';
 
     export default {
-        name: 'ShowCardComponent',
+        name: 'TvShowCardComponent',
         props: {
             tv: Object,
         },
