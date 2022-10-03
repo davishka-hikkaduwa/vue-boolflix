@@ -6,11 +6,15 @@
         <p>Language:
             <FlagComponent :language="tv.original_language"/>
         </p>
+        <CoverPosterComponent :alt="tv.name" :image="tv.poster_path"/>
+
     </div>
 </template>
 
 <script>
     import FlagComponent from '@/components/FlagComponent.vue';
+    import CoverPosterComponent from '@/components/CoverPosterComponent.vue';
+
 
     export default {
         name: 'TvShowCardComponent',
@@ -19,6 +23,7 @@
         },
         components: {
             FlagComponent,
+            CoverPosterComponent
         },
     }
 </script>

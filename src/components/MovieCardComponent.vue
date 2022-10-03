@@ -6,19 +6,22 @@
         <p>Language:
             <FlagComponent :language="movie.original_language"/>
         </p>
+        <CoverPosterComponent :alt="movie.title" :image="movie.poster_path"/>
     </div>    
 
 </template>
 
 <script>
 import FlagComponent from '@/components/FlagComponent.vue';
+import CoverPosterComponent from '@/components/CoverPosterComponent.vue';
 export default {
     name: 'MovieCardComponent',
     props: {
         movie: Object,
     },
     components: {
-    FlagComponent
+    FlagComponent,
+    CoverPosterComponent
 },
 }
 </script>
