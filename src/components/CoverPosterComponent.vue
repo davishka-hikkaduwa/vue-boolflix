@@ -1,5 +1,5 @@
 <template>
-    <img :src="imageUrl" :alt="alt" class="cover-poster" @error="setUnavailableCoverPoster(event)">
+    <img :src="imageUrl" :alt="alt" class="cover-poster" @error="setUnavailableCoverPoster($event)">
 </template>
 
 <script>
@@ -26,6 +26,7 @@
 
 <style scoped lang="scss">
     .cover-poster{
-        max-width: 250px;
+        object-fit: cover;
+        width: 100%;
     }
 </style>

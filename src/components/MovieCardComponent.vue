@@ -2,7 +2,7 @@
     <div class="card my-2 p-2 col-4 ">
         <p>Title: {{ movie.title }}</p>
         <p>Original Title: {{ movie.original_title }}</p>
-        <p>Average Vote: {{ movie.vote_average }}</p>
+        <RatingComponent :vote="movie.vote_average"/>
         <p>Language:
             <FlagComponent :language="movie.original_language"/>
         </p>
@@ -14,6 +14,7 @@
 <script>
 import FlagComponent from '@/components/FlagComponent.vue';
 import CoverPosterComponent from '@/components/CoverPosterComponent.vue';
+import RatingComponent from './RatingComponent.vue';
 export default {
     name: 'MovieCardComponent',
     props: {
@@ -21,7 +22,8 @@ export default {
     },
     components: {
     FlagComponent,
-    CoverPosterComponent
+    CoverPosterComponent,
+    RatingComponent
 },
 }
 </script>

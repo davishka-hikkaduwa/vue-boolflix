@@ -15,12 +15,27 @@
       <div class="row">
       <!-- MOVIES -->
       <h3>Movies</h3>
-      <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/>
+      <!-- <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
+      <CardComponent v-for="movie in movies" :key="movie.id" :movie="movie"
+      :title="movie.title"
+      :originalTitle="movie.original_name"
+      :vote="movie.vote_average"
+      :language="movie.original_language"
+      :image="movie.poster_path"
+      />
     </div>
     <div class="row">
       <!-- Tv-Series -->
       <h3>Tv-Series</h3>
-      <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/> 
+      <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
+      <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
+      :title="tvShow.name"
+      :originalTitle="tvShow.original_name"
+      :vote="tvShow.vote_average"
+      :language="tvShow.original_language"
+      :image="tvShow.poster_path"
+      />
+       
     </div>
     </div>
    
@@ -31,8 +46,10 @@
   import axios from 'axios';
   import { apiKey } from '@/env';
   import HeaderComponent from '@/components/HeaderComponent.vue';
-  import MovieCardComponent from '@/components/MovieCardComponent.vue';
-  import TvShowCardComponent from '@/components/TvShowCardComponent.vue';
+  // import MovieCardComponent from '@/components/MovieCardComponent.vue';
+  // import TvShowCardComponent from '@/components/TvShowCardComponent.vue';
+  import CardComponent from '@/components/CardComponent.vue';
+
 
 export default {
   name: 'App',
@@ -85,14 +102,15 @@ export default {
       }
       return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`
     },
-    fixImageError(event){
-      event.target.src = `https://flagicons.lipis.dev/flags/1x1/xx.svg`
-    }  
+    // fixImageError(event){
+    //   event.target.src = `https://flagicons.lipis.dev/flags/1x1/xx.svg`
+    // }  
   },
   components: {
     HeaderComponent,
-    MovieCardComponent,
-    TvShowCardComponent
+    // MovieCardComponent,
+    // TvShowCardComponent,
+    CardComponent
 },
   axios,
 }
