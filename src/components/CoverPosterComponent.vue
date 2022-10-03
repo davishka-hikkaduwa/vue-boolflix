@@ -1,5 +1,7 @@
 <template>
-    <img :src="imageUrl" :alt="alt" class="cover-poster" @error="setUnavailableCoverPoster($event)">
+    <div class="img-container">
+        <img :src="imageUrl" :alt="alt" class="cover-poster" @error="setUnavailableCoverPoster($event)">
+    </div>
 </template>
 
 <script>
@@ -25,8 +27,13 @@
 </script>
 
 <style scoped lang="scss">
+    .img-container{
+        display: flex;
+        justify-content: center;
+    }
     .cover-poster{
         object-fit: cover;
         width: 100%;
+        height: 500px;
     }
 </style>

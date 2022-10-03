@@ -1,14 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComponent/>
-
-    <!----- SEARCHBOX ----->
-    <div class="search-box py-3 px-5">  
-      <input type="text" v-model="query"/>
-      <button @click="search">
-        Cerca
-      </button>
-    </div>
+    <HeaderComponent @search="queryApi"/>
     
     <!----- Container ----->
     <div class="container">
@@ -22,6 +14,7 @@
       :vote="movie.vote_average"
       :language="movie.original_language"
       :image="movie.poster_path"
+      :overview="movie.overview"
       />
     </div>
     <div class="row">
@@ -34,6 +27,7 @@
       :vote="tvShow.vote_average"
       :language="tvShow.original_language"
       :image="tvShow.poster_path"
+      :overview="tvShow.overview"
       />
        
     </div>

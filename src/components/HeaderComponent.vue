@@ -1,7 +1,10 @@
 <template>
     <header>
-        <div class="container">
-        </div>
+    <!----- SEARCHBOX ----->
+        <div class="search-box py-3 px-5">  
+            <input type="text" v-model="query" @keyup.enter="$emit('search', query)"/>
+                <button @click="$emit('search', query)">Cerca</button>
+        </div>       
     </header>
 </template>
 
@@ -9,7 +12,13 @@
 export default {
     name: 'HeaderComponent',
     components:{
-}
+
+    },
+    data(){
+        return {
+            query: '',
+        }
+    }
 }
 </script>
 
