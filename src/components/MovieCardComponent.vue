@@ -1,5 +1,5 @@
 <template>
-    <div class="card my-2">
+    <div class="card my-2 p-2 col-4 ">
         <p>Title: {{ movie.title }}</p>
         <p>Original Title: {{ movie.original_title }}</p>
         <p>Average Vote: {{ movie.vote_average }}</p>
@@ -29,6 +29,7 @@ export default {
 <style scoped lang="scss">
 .card{
     border: 1px solid black;
+    // width: 300px;
 }
 
 </style>

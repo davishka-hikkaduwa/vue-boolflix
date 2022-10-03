@@ -1,5 +1,5 @@
 <template>
-    <div class="card my-2" >
+    <div class="card my-2 p-2 col-4" >
         <p>Name: {{ tv.name }}</p>
         <p>Original Name: {{ tv.original_name }}</p>
         <p>Average Vote: {{ tv.vote_average }}</p>

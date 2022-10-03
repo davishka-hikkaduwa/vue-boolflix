@@ -3,7 +3,7 @@
     <HeaderComponent/>
 
     <!----- SEARCHBOX ----->
-    <div>  
+    <div class="search-box py-3 px-5">  
       <input type="text" v-model="query"/>
       <button @click="search">
         Cerca
@@ -12,12 +12,16 @@
     
     <!----- Container ----->
     <div class="container">
+      <div class="row">
       <!-- MOVIES -->
       <h3>Movies</h3>
       <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/>
+    </div>
+    <div class="row">
       <!-- Tv-Series -->
       <h3>Tv-Series</h3>
       <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/> 
+    </div>
     </div>
    
   </div>
@@ -101,6 +105,7 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  
   
 
   
