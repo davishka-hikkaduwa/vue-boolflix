@@ -27,6 +27,7 @@ export default {
 header{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: rgb(35, 35, 35);
     padding: 10px;
    h1{

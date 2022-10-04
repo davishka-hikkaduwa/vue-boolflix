@@ -42,9 +42,10 @@ export default {
 <style scoped lang="scss">
 .card{
     color: white;
-        background-color: rgb(35, 35, 35);
-    border: 1px solid black;
+    background-color: rgb(35, 35, 35);
+    border: 1px solid rgb(35, 35, 35);
     height: 500px;
+    width: 320px;
     position: relative;
     .info{
         

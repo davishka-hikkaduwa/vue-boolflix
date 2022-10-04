@@ -3,7 +3,8 @@
     <HeaderComponent class="header-component" @search="queryApi"/>
     
     <!----- Container ----->
-    <div class="container-fluid mx-0 py-2">
+    <div class="container-fluid mx-0">
+      <div class="card-container">
       <div class="row">
         <!-- MOVIES -->
         <h3>Movies</h3>
@@ -30,6 +31,7 @@
           :overview="tvShow.overview"
         />  
       </div>
+    </div>
     </div>
    
   </div>
@@ -120,7 +122,6 @@ export default {
     box-sizing: border-box;
     background-color: rgb(80, 80, 80);
     height: 100vh;
-    overflow-y: scroll;
   }
   .header-component{
     height: 10vh;
@@ -132,15 +133,22 @@ export default {
 
   
   .container-fluid{
-    height: 90vh;
     margin: 0;
-    margin-top: 80px
+    padding: 0;
+    padding-top: 10vh;
+    
     // padding-top: ;
     
   }
+  .card-container{
+    overflow-y: scroll;
+    height: 90vh;
+
+  }
+
   .row{
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
   }
 
   
