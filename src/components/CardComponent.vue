@@ -1,5 +1,5 @@
 <template>
-    <div class="card my-2 p-2 col-3 mx-5">
+    <div class="card my-2 mx-4 p-2 g-col-3">
         <div class="cover-poster-component">
             <CoverPosterComponent :alt="title" :image="image"/>
         </div>
@@ -44,12 +44,10 @@ export default {
     color: white;
     background-color: rgb(35, 35, 35);
     border: 1px solid rgb(35, 35, 35);
-    height: 500px;
-    width: 320px;
+    height: 300px;
+    width: 200px;
     position: relative;
-    .info{
-        
-    }
+  
     .cover-poster-component{
         position: absolute;
         top: 0;
@@ -58,9 +56,15 @@ export default {
     &:hover .cover-poster-component{
         display: none;
     }
+    .info{
+        display: flex;
+        flex-direction: column;
+        max-height: 280px;
+        font-size: 1.5vh;
+    }
     .plot{
         overflow-y: auto;
-        max-height: 300px;
+        max-height: 100px;
     }
 }
 

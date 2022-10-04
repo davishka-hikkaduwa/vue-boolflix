@@ -5,33 +5,37 @@
     <!----- Container ----->
     <div class="container-fluid mx-0">
       <div class="card-container">
-      <div class="row">
-        <!-- MOVIES -->
+      <!-- MOVIES -->
         <h3>Movies</h3>
-        <!-- <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
-        <CardComponent v-for="movie in movies" :key="movie.id" :movie="movie"
-          :title="movie.title"
-          :originalTitle="movie.original_name"
-          :vote="movie.vote_average"
-          :language="movie.original_language"
-          :image="movie.poster_path"
-          :overview="movie.overview"
-        />
-      </div>
-      <div class="row">
+        <div class="grid">
+          <div class="row"> 
+            <!-- <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
+            <CardComponent v-for="movie in movies" :key="movie.id" :movie="movie"
+              :title="movie.title"
+              :originalTitle="movie.original_name"
+              :vote="movie.vote_average"
+              :language="movie.original_language"
+              :image="movie.poster_path"
+              :overview="movie.overview"
+            />
+          </div>
+        </div>
         <!-- Tv-Series -->
         <h3>Tv-Series</h3>
-        <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
-        <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
-          :title="tvShow.name"
-          :originalTitle="tvShow.original_name"
-          :vote="tvShow.vote_average"
-          :language="tvShow.original_language"
-          :image="tvShow.poster_path"
-          :overview="tvShow.overview"
-        />  
+        <div class="grid">
+          <div class="row">
+            <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
+            <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
+              :title="tvShow.name"
+              :originalTitle="tvShow.original_name"
+              :vote="tvShow.vote_average"
+              :language="tvShow.original_language"
+              :image="tvShow.poster_path"
+              :overview="tvShow.overview"
+            />  
+          </div>
+        </div>
       </div>
-    </div>
     </div>
    
   </div>
@@ -133,22 +137,36 @@ export default {
 
   
   .container-fluid{
-    margin: 0;
-    padding: 0;
+    // margin: 0;
+    // padding: 0;
     padding-top: 10vh;
     
     // padding-top: ;
     
   }
   .card-container{
-    overflow-y: scroll;
+    
     height: 90vh;
+    
 
   }
+  h3{
+    padding: 0px 6px;
 
-  .row{
-    // display: flex;
-    // flex-wrap: wrap;
+  }
+  .grid{
+    display: flex;
+    // width: 100vh;
+    justify-content: center;
+    padding: 0 50px;
+    
+    .row{
+      
+      overflow-x:scroll;
+      flex-wrap: nowrap;
+
+
+    }
   }
 
   
