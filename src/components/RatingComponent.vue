@@ -34,4 +34,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+    .fa-star{
+        color: gold;
+    }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="card my-2 p-2 col-4">
+    <div class="card my-2 p-2 col-3 mx-5">
         <div class="cover-poster-component">
             <CoverPosterComponent :alt="title" :image="image"/>
         </div>
@@ -12,8 +12,7 @@
                 <FlagComponent :language="language"/>
             </p>
         </div>
-        
-    </div>    
+    </div>
 
 </template>
 
@@ -42,9 +41,14 @@ export default {
 
 <style scoped lang="scss">
 .card{
+    color: white;
+        background-color: rgb(35, 35, 35);
     border: 1px solid black;
     height: 500px;
     position: relative;
+    .info{
+        
+    }
     .cover-poster-component{
         position: absolute;
         top: 0;

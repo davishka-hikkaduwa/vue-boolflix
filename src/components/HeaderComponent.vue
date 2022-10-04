@@ -1,5 +1,6 @@
 <template>
     <header>
+        <h1>BOOLFLIX</h1>
     <!----- SEARCHBOX ----->
         <div class="search-box py-3 px-5">  
             <input type="text" v-model="query" @keyup.enter="$emit('search', query)"/>
@@ -24,10 +25,13 @@ export default {
 
 <style scoped lang="scss">
 header{
-    background-color: darkgray;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(35, 35, 35);
     padding: 10px;
-    margin-bottom: 20px;
-   
+   h1{
+    color: rgb(175, 2, 2);
+   }
 }
 
 </style>

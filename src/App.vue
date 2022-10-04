@@ -1,36 +1,35 @@
 <template>
   <div id="app">
-    <HeaderComponent @search="queryApi"/>
+    <HeaderComponent class="header-component" @search="queryApi"/>
     
     <!----- Container ----->
-    <div class="container">
+    <div class="container-fluid mx-0 py-2">
       <div class="row">
-      <!-- MOVIES -->
-      <h3>Movies</h3>
-      <!-- <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
-      <CardComponent v-for="movie in movies" :key="movie.id" :movie="movie"
-      :title="movie.title"
-      :originalTitle="movie.original_name"
-      :vote="movie.vote_average"
-      :language="movie.original_language"
-      :image="movie.poster_path"
-      :overview="movie.overview"
-      />
-    </div>
-    <div class="row">
-      <!-- Tv-Series -->
-      <h3>Tv-Series</h3>
-      <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
-      <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
-      :title="tvShow.name"
-      :originalTitle="tvShow.original_name"
-      :vote="tvShow.vote_average"
-      :language="tvShow.original_language"
-      :image="tvShow.poster_path"
-      :overview="tvShow.overview"
-      />
-       
-    </div>
+        <!-- MOVIES -->
+        <h3>Movies</h3>
+        <!-- <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
+        <CardComponent v-for="movie in movies" :key="movie.id" :movie="movie"
+          :title="movie.title"
+          :originalTitle="movie.original_name"
+          :vote="movie.vote_average"
+          :language="movie.original_language"
+          :image="movie.poster_path"
+          :overview="movie.overview"
+        />
+      </div>
+      <div class="row">
+        <!-- Tv-Series -->
+        <h3>Tv-Series</h3>
+        <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
+        <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
+          :title="tvShow.name"
+          :originalTitle="tvShow.original_name"
+          :vote="tvShow.vote_average"
+          :language="tvShow.original_language"
+          :image="tvShow.poster_path"
+          :overview="tvShow.overview"
+        />  
+      </div>
     </div>
    
   </div>
@@ -116,9 +115,33 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgb(80, 80, 80);
+    height: 100vh;
+    overflow-y: scroll;
   }
+  .header-component{
+    height: 10vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }  
+
   
-  
+  .container-fluid{
+    height: 90vh;
+    margin: 0;
+    margin-top: 80px
+    // padding-top: ;
+    
+  }
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   
 </style>
