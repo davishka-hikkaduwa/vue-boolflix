@@ -11,7 +11,7 @@
             <!-- <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
             <div class="prev">&#10094;</div>
             <div class="inner">
-            <CardComponent v-for="(movie) in movies" :key="movie.id" :movie="movie"
+            <CardComponent v-for="movie in movies" :key="movie.id" :movie="movie"
               :title="movie.title"
               :originalTitle="movie.original_name"
               :vote="movie.vote_average"
@@ -20,13 +20,13 @@
               :overview="movie.overview"
             />
             </div>
-            <div class="next" @click="next">&#10095;</div>
+            <div class="next">&#10095;</div>
         </div>
         <!-- Tv-Series -->
         <h3>Tv-Series</h3>
         <div class="carousel-container">
           <div class="prev">&#10094;</div>
-            <div class="inner">
+          <div class="inner">
               <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
               <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
                 :title="tvShow.name"
@@ -36,7 +36,7 @@
                 :image="tvShow.poster_path"
                 :overview="tvShow.overview"
               />  
-            </div>
+          </div>
           <div class="next">&#10095;</div>
         </div>
       </div>
@@ -62,13 +62,13 @@ export default {
       movies: [],
       tvShows: [],
       apiUrl: 'https://api.themoviedb.org/3/',
-      innerStyles: {},
-      step: '',    
+      // innerStyles: {},
+      // step: '',    
     }
   },
-  mounted() {
-    this.setStep()
-  },
+  // mounted() {
+  //   this.setStep()
+  // },
   methods: {
     search(){
       this.queryApi(this.query)
@@ -108,7 +108,7 @@ export default {
       }
       return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`
     },
-    setStep() {
+  /*setStep() {
       const innerWidth = this.$refs.inner.scrollWidth;
       const totalCards = this.movies.length;
       this.step = `${innerWidth / totalCards} px`
@@ -138,7 +138,7 @@ export default {
         transition: 'none',
         transform: 'translateX(0)'
       }
-    },
+    },*/
    
    
   },
@@ -191,30 +191,24 @@ export default {
 
   }
   .carousel-container{
-    // display: flex;
-    
-
-    // justify-content: center;
-    // padding: 0 50px;
+    display: flex;
     height: calc((90vh / 2) - 3vh);
-    // max-width: 100vw;
-    width:60vw;
+    width: 100vw;
     position: relative;
     margin: auto;
     overflow: hidden;
+    
 
     .inner{
+      position: absolute;
+      width: 80vw;
       white-space: nowrap;
-      transition: transform 0.2s;
+      // transition: transform 0.2s;
+      overflow-x: scroll;
+      left: 8vw;
     }
    
-    // .row{ 
-    //   position: absolute;
-    //   left: 5vw;
-    //   overflow-x:scroll;
-    //   flex-wrap: nowrap;
-    //   max-width: 85vw;
-    // }
+   
     .prev, .next{
       position: absolute;
       top: 50%;
@@ -231,8 +225,8 @@ export default {
     .next {
       right: 0;
       border-radius: 3px 0 0 3px;
-    }
   }
+}
 
   
 </style>
