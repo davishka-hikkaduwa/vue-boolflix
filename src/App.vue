@@ -5,12 +5,13 @@
     <!----- Container ----->
     <div class="container-fluid mx-0">
       <div class="card-container">
-      <!-- MOVIES -->
+        <!-- MOVIES -->
         <h3>Movies</h3>
-        <div class="grid">
-          <div class="row"> 
+        <div class="carousel-container">
             <!-- <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
-            <CardComponent v-for="movie in movies" :key="movie.id" :movie="movie"
+            <div class="prev">&#10094;</div>
+            <div class="row">
+            <CardComponent class="slide" v-for="movie in movies" :key="movie.id" :movie="movie"
               :title="movie.title"
               :originalTitle="movie.original_name"
               :vote="movie.vote_average"
@@ -18,22 +19,25 @@
               :image="movie.poster_path"
               :overview="movie.overview"
             />
-          </div>
+            </div>
+            <div class="next">&#10095;</div>
         </div>
         <!-- Tv-Series -->
         <h3>Tv-Series</h3>
-        <div class="grid">
-          <div class="row">
-            <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
-            <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
-              :title="tvShow.name"
-              :originalTitle="tvShow.original_name"
-              :vote="tvShow.vote_average"
-              :language="tvShow.original_language"
-              :image="tvShow.poster_path"
-              :overview="tvShow.overview"
-            />  
-          </div>
+        <div class="carousel-container">
+          <div class="prev">&#10094;</div>
+            <div class="row">
+              <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
+              <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
+                :title="tvShow.name"
+                :originalTitle="tvShow.original_name"
+                :vote="tvShow.vote_average"
+                :language="tvShow.original_language"
+                :image="tvShow.poster_path"
+                :overview="tvShow.overview"
+              />  
+            </div>
+          <div class="next">&#10095;</div>
         </div>
       </div>
     </div>
@@ -57,7 +61,8 @@ export default {
       query: '',
       movies: [],
       tvShows: [],
-      apiUrl: 'https://api.themoviedb.org/3/'
+      apiUrl: 'https://api.themoviedb.org/3/',
+      
     }
   },
   methods: {
@@ -87,7 +92,6 @@ export default {
       return response.status === 200? response.data.results: []
 
     },
- 
     getFlag(country){
       switch (country) {
         case 'en': {
@@ -101,14 +105,11 @@ export default {
       }
       return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`
     },
-    // fixImageError(event){
-    //   event.target.src = `https://flagicons.lipis.dev/flags/1x1/xx.svg`
-    // }  
+   
+   
   },
   components: {
     HeaderComponent,
-    // MovieCardComponent,
-    // TvShowCardComponent,
     CardComponent
 },
   axios,
@@ -144,11 +145,8 @@ export default {
     // padding-top: ;
     
   }
-  .card-container{
-    
+  .card-container{   
     height: 90vh;
-    
-
   }
   h3{
     padding: 0px 6px;
@@ -158,19 +156,43 @@ export default {
     color: white;
 
   }
-  .grid{
-    display: flex;
-    // width: 100vh;
-    justify-content: center;
-    padding: 0 50px;
-    height: calc((90vh / 2) - 3vh);
+  .carousel-container{
+    // display: flex;
     
-    .row{
-      
+
+    // justify-content: center;
+    // padding: 0 50px;
+    height: calc((90vh / 2) - 3vh);
+    max-width: 100vw;
+    position: relative;
+    margin: auto;
+
+    .slide{
+      // display: none;
+    }
+    .row{ 
+      position: absolute;
+      left: 5vw;
       overflow-x:scroll;
       flex-wrap: nowrap;
-
-
+      max-width: 85vw;
+    }
+    .prev, .next{
+      position: absolute;
+      top: 50%;
+      width: 5vw;
+      margin-top: -40px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
     }
   }
 
