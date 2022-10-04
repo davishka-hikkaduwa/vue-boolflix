@@ -10,8 +10,8 @@
         <div class="carousel-container">
             <!-- <MovieCardComponent v-for="movie in movies" :key="movie.id" :movie="movie"/> -->
             <div class="prev">&#10094;</div>
-            <div class="row">
-            <CardComponent class="slide" v-for="movie in movies" :key="movie.id" :movie="movie"
+            <div class="inner">
+            <CardComponent v-for="(movie) in movies" :key="movie.id" :movie="movie"
               :title="movie.title"
               :originalTitle="movie.original_name"
               :vote="movie.vote_average"
@@ -20,13 +20,13 @@
               :overview="movie.overview"
             />
             </div>
-            <div class="next">&#10095;</div>
+            <div class="next" @click="next">&#10095;</div>
         </div>
         <!-- Tv-Series -->
         <h3>Tv-Series</h3>
         <div class="carousel-container">
           <div class="prev">&#10094;</div>
-            <div class="row">
+            <div class="inner">
               <!-- <TvShowCardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"/>  -->
               <CardComponent v-for="tvShow in tvShows" :key="tvShow.id" :tv="tvShow"
                 :title="tvShow.name"
@@ -62,8 +62,12 @@ export default {
       movies: [],
       tvShows: [],
       apiUrl: 'https://api.themoviedb.org/3/',
-      
+      innerStyles: {},
+      step: '',    
     }
+  },
+  mounted() {
+    this.setStep()
   },
   methods: {
     search(){
@@ -90,7 +94,6 @@ export default {
     getDataFromApiResponse(response){
       console.log(response);
       return response.status === 200? response.data.results: []
-
     },
     getFlag(country){
       switch (country) {
@@ -104,6 +107,37 @@ export default {
         }
       }
       return `https://flagicons.lipis.dev/flags/1x1/${country}.svg`
+    },
+    setStep() {
+      const innerWidth = this.$refs.inner.scrollWidth;
+      const totalCards = this.movies.length;
+      this.step = `${innerWidth / totalCards} px`
+    },
+    next(){
+      this.moveLeft();
+      this.afterTransition(() =>{
+        const movie = this.movies.shift()
+        this.movies.push(movie)
+        this.resetTranslate()
+      })
+    },
+    moveLeft(){
+      this.innerStyles = {
+        transform: `translateX(-${this.step})`
+      }
+    },
+    afterTransition(callback) {
+      const listener = () => {
+        callback()
+        this.$refs.inner.removeEventListener('transitionend', listener)
+      }
+      this.$refs.inner.addEventListener('transitionend', listener)
+    },
+    resetTranslate () {
+      this.innerStyles = {
+        transition: 'none',
+        transform: 'translateX(0)'
+      }
     },
    
    
@@ -163,20 +197,24 @@ export default {
     // justify-content: center;
     // padding: 0 50px;
     height: calc((90vh / 2) - 3vh);
-    max-width: 100vw;
+    // max-width: 100vw;
+    width:60vw;
     position: relative;
     margin: auto;
+    overflow: hidden;
 
-    .slide{
-      // display: none;
+    .inner{
+      white-space: nowrap;
+      transition: transform 0.2s;
     }
-    .row{ 
-      position: absolute;
-      left: 5vw;
-      overflow-x:scroll;
-      flex-wrap: nowrap;
-      max-width: 85vw;
-    }
+   
+    // .row{ 
+    //   position: absolute;
+    //   left: 5vw;
+    //   overflow-x:scroll;
+    //   flex-wrap: nowrap;
+    //   max-width: 85vw;
+    // }
     .prev, .next{
       position: absolute;
       top: 50%;

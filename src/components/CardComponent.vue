@@ -47,6 +47,7 @@ export default {
     height: 300px;
     width: 200px;
     position: relative;
+    display: inline-flex;
   
     .cover-poster-component{
         position: absolute;
