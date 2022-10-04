@@ -32,6 +32,7 @@ header{
     padding: 10px;
    h1{
     color: rgb(175, 2, 2);
+    font-family: 'Bebas Neue';
    }
 }
 

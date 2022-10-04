@@ -124,7 +124,7 @@ export default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(80, 80, 80);
+    background-color:  rgb(35, 35, 35);
     height: 100vh;
   }
   .header-component{
@@ -152,6 +152,10 @@ export default {
   }
   h3{
     padding: 0px 6px;
+    height: 3vh;
+    margin: 0;
+    font-family: 'Bebas Neue';
+    color: white;
 
   }
   .grid{
@@ -159,6 +163,7 @@ export default {
     // width: 100vh;
     justify-content: center;
     padding: 0 50px;
+    height: calc((90vh / 2) - 3vh);
     
     .row{
       
